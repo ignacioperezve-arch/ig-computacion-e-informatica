@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG Computación e Informática</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-royal: #1B5CB8;
+    --blue-navy: #1A2F6F;
+    --blue-mid: #2563EB;
+    --blue-light: #DBEAFE;
+    --blue-pale: #EFF6FF;
+    --white: #FFFFFF;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-600: #475569;
+    --gray-800: #1E293B;
+    --accent: #0EA5E9;
+    --accent-glow: rgba(14,165,233,0.18);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 4rem;
+    background: rgba(26,47,111,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: all 0.3s;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 0.75rem;
+    text-decoration: none;
+  }
+  .nav-logo { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .nav-name {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1rem;
+    color: var(--white); letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.78);
+    text-decoration: none; font-size: 0.87rem;
+    font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--blue-royal); color: white !important;
+    padding: 0.45rem 1.2rem; border-radius: 100px;
+    font-size: 0.82rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: white !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--blue-navy) 0%, #0f1f50 50%, #122b7d 100%);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 7rem 4rem 4rem;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-blob-1 { width: 500px; height: 500px; background: var(--blue-royal); top: -100px; right: -100px; }
+  .hero-blob-2 { width: 300px; height: 300px; background: var(--accent); bottom: 50px; left: 200px; animation-delay: -3s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
+
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(14,165,233,0.15); border: 1px solid rgba(14,165,233,0.35);
+    color: var(--accent); font-size: 0.78rem; font-weight: 600;
+    padding: 0.35rem 1rem; border-radius: 100px; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 3.6rem; font-weight: 800; line-height: 1.05;
+    color: var(--white); margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title span { color: var(--accent); }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75;
+    color: rgba(255,255,255,0.68); margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.25s ease both;
+  }
+  .badge {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85); font-size: 0.8rem; font-weight: 500;
+    padding: 0.3rem 0.9rem; border-radius: 100px;
+  }
+  .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.6s 0.3s ease both; }
+  .btn-primary {
+    background: var(--blue-royal); color: white;
+    padding: 0.8rem 2rem; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    border: none; cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(27,92,184,0.4);
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: white;
+    padding: 0.8rem 2rem; border-radius: 100px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-logo-wrap {
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeIn 1s 0.4s ease both;
+  }
+  .hero-logo-ring {
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 0 80px rgba(27,92,184,0.5), inset 0 0 60px rgba(27,92,184,0.2);
+  }
+  .hero-logo-ring::before {
+    content: ''; position: absolute; inset: -12px; border-radius: 50%;
+    border: 1px solid rgba(14,165,233,0.25);
+    animation: spin 20s linear infinite;
+  }
+  .hero-logo-ring::after {
+    content: ''; position: absolute; inset: -28px; border-radius: 50%;
+    border: 1px dashed rgba(255,255,255,0.08);
+    animation: spin 30s linear infinite reverse;
+  }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .hero-logo { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  /* ─── STATS ─── */
+  .stats-bar {
+    background: var(--blue-royal);
+    padding: 2.5rem 4rem;
+    display: flex; justify-content: center; gap: 0;
+  }
+  .stat-item {
+    text-align: center; padding: 0 4rem;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem; font-weight: 800; color: white;
+    display: block;
+  }
+  .stat-label { color: rgba(255,255,255,0.72); font-size: 0.82rem; font-weight: 500; margin-top: 0.2rem; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 4rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--blue-royal);
+    margin-bottom: 0.8rem; display: block;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 2.6rem; font-weight: 800; line-height: 1.1;
+    color: var(--blue-navy); margin-bottom: 1rem;
+  }
+  .section-subtitle {
+    font-size: 1.05rem; color: var(--gray-600); line-height: 1.7;
+    max-width: 580px; margin-bottom: 3.5rem;
+  }
+
+  /* ─── EXPERTISE ─── */
+  #expertise { background: var(--gray-50); }
+  .expertise-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  }
+  .expertise-card {
+    background: white; border-radius: 16px;
+    padding: 2rem; border: 1px solid var(--gray-200);
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .expertise-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-royal), var(--accent));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .expertise-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(27,92,184,0.12); }
+  .expertise-card:hover::before { transform: scaleX(1); }
+  .exp-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--blue-pale); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem; font-size: 1.4rem;
+  }
+  .exp-title {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700; color: var(--blue-navy);
+    margin-bottom: 0.6rem;
+  }
+  .exp-desc { font-size: 0.87rem; color: var(--gray-600); line-height: 1.65; }
+
+  /* ─── TEAM ─── */
+  #equipo { background: white; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .team-card {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s;
+  }
+  .team-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(27,92,184,0.1); }
+  .team-card-header {
+    background: linear-gradient(135deg, var(--blue-navy), var(--blue-royal));
+    padding: 2.5rem 2rem; text-align: center;
+  }
+  .team-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin: 0 auto 1rem;
+  }
+  .team-role {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700; color: white;
+  }
+  .team-sublabel {
+    font-size: 0.75rem; color: rgba(255,255,255,0.6);
+    margin-top: 0.25rem; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .team-card-body { padding: 1.8rem 2rem; }
+  .team-resp-title { font-size: 0.75rem; font-weight: 600; color: var(--blue-royal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .team-resp-list { list-style: none; }
+  .team-resp-list li {
+    font-size: 0.85rem; color: var(--gray-600); padding: 0.4rem 0;
+    border-bottom: 1px solid var(--gray-100); display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .team-resp-list li:last-child { border-bottom: none; }
+  .team-resp-list li::before { content: '▸'; color: var(--blue-royal); flex-shrink: 0; font-size: 0.7rem; margin-top: 0.15rem; }
+  .scrum-badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    background: var(--blue-pale); color: var(--blue-royal);
+    font-size: 0.72rem; font-weight: 600; padding: 0.3rem 0.8rem;
+    border-radius: 100px; margin-top: 1rem;
+  }
+
+  /* ─── REPOSITORIO ─── */
+  #repositorio { background: var(--gray-50); }
+  .repo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  .repo-card {
+    background: white; border-radius: 16px;
+    border: 1px solid var(--gray-200); overflow: hidden;
+    transition: all 0.3s;
+  }
+  .repo-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(27,92,184,0.1); }
+  .repo-thumb {
+    height: 180px; background: linear-gradient(135deg, var(--blue-navy) 0%, var(--blue-royal) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .repo-thumb-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem; color: rgba(255,255,255,0.4);
+  }
+  .repo-thumb-icon { font-size: 2.5rem; }
+  .repo-thumb-domain { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .repo-thumb-overlay {
+    position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,47,111,0.7), transparent);
+  }
+  .repo-thumb-tag {
+    position: absolute; top: 1rem; right: 1rem;
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
+    color: white; font-size: 0.7rem; font-weight: 600;
+    padding: 0.25rem 0.7rem; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .repo-body { padding: 1.4rem; }
+  .repo-name {
+    font-family: var(--font-display);
+    font-size: 0.95rem; font-weight: 700; color: var(--blue-navy);
+    margin-bottom: 0.5rem;
+  }
+  .repo-desc { font-size: 0.83rem; color: var(--gray-600); line-height: 1.6; margin-bottom: 1rem; }
+  .repo-footer { display: flex; align-items: center; justify-content: space-between; }
+  .repo-tech-list { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tech-pill {
+    font-size: 0.68rem; font-weight: 600;
+    background: var(--blue-pale); color: var(--blue-royal);
+    padding: 0.2rem 0.55rem; border-radius: 100px;
+  }
+  .repo-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    color: var(--blue-royal); font-size: 0.78rem; font-weight: 600;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .repo-link:hover { color: var(--accent); }
+
+  /* IoT card */
+  .repo-card.iot-placeholder {
+    border: 2px dashed var(--gray-200);
+    background: var(--gray-50);
+  }
+  .iot-placeholder .repo-thumb {
+    background: linear-gradient(135deg, #1A2F6F33 0%, #1B5CB833 100%);
+  }
+  .iot-add-btn {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--blue-pale); color: var(--blue-royal);
+    border: 1px solid var(--blue-light); border-radius: 8px;
+    padding: 0.5rem 1rem; font-size: 0.82rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+    width: 100%;justify-content: center; margin-top: 0.5rem;
+  }
+  .iot-add-btn:hover { background: var(--blue-royal); color: white; }
+
+  /* ─── INVESTIGACION ─── */
+  #investigacion {
+    background: linear-gradient(135deg, var(--blue-navy) 0%, #122b7d 100%);
+    position: relative; overflow: hidden;
+  }
+  #investigacion .section-title { color: white; }
+  #investigacion .section-subtitle { color: rgba(255,255,255,0.65); }
+  #investigacion .section-label { color: var(--accent); }
+  .research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .research-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px; padding: 2rem;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s;
+  }
+  .research-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(14,165,233,0.3); }
+  .research-status {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-active .status-dot { background: #22C55E; box-shadow: 0 0 6px #22C55E; }
+  .status-active { color: #22C55E; }
+  .status-draft .status-dot { background: #F59E0B; }
+  .status-draft { color: #F59E0B; }
+  .research-title {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.6rem;
+  }
+  .research-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.65; }
+  .research-add {
+    border: 2px dashed rgba(255,255,255,0.15);
+    border-radius: 16px; padding: 2rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.8rem; text-align: center;
+    transition: all 0.3s;
+  }
+  .research-add:hover { border-color: rgba(14,165,233,0.4); background: rgba(14,165,233,0.05); }
+  .research-add span { font-size: 2rem; }
+  .research-add p { color: rgba(255,255,255,0.45); font-size: 0.85rem; }
+
+  /* ─── DOCENCIA ─── */
+  #docencia { background: white; }
+  .docencia-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: stretch; }
+  .docencia-sidebar {
+    background: linear-gradient(135deg, var(--blue-navy), var(--blue-royal));
+    border-radius: 20px; padding: 2.5rem; color: white;
+    height: 100%;
+  }
+  .doc-sidebar-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem;
+  }
+  .doc-sidebar-sub { font-size: 0.88rem; color: rgba(255,255,255,0.65); margin-bottom: 2rem; line-height: 1.6; }
+  .doc-stat-list { list-style: none; }
+  .doc-stat-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .doc-stat-item:last-child { border-bottom: none; }
+  .doc-stat-icon { font-size: 1.3rem; }
+  .doc-stat-num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; }
+  .doc-stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+  .docencia-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .doc-card {
+    border: 1px solid var(--gray-200); border-radius: 14px; padding: 1.5rem;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    transition: all 0.3s;
+  }
+  .doc-card:hover { border-color: var(--blue-royal); background: var(--blue-pale); }
+  .doc-card-icon {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: var(--blue-pale); display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .doc-card-title {
+    font-family: var(--font-display); font-size: 0.97rem;
+    font-weight: 700; color: var(--blue-navy); margin-bottom: 0.35rem;
+  }
+  .doc-card-desc { font-size: 0.83rem; color: var(--gray-600); line-height: 1.6; }
+  .doc-card-tag {
+    display: inline-block; margin-top: 0.6rem;
+    font-size: 0.7rem; font-weight: 600;
+    background: var(--blue-pale); color: var(--blue-royal);
+    padding: 0.2rem 0.6rem; border-radius: 100px;
+  }
+  .doc-add-card {
+    border: 2px dashed var(--gray-200); border-radius: 14px; padding: 1.5rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem; text-align: center; color: var(--gray-600);
+    font-size: 0.85rem; min-height: 100px;
+    transition: all 0.2s;
+  }
+  .doc-add-card:hover { border-color: var(--blue-royal); color: var(--blue-royal); background: var(--blue-pale); }
+
+  /* ─── CONTACTO ─── */
+  #contacto {
+    background: var(--gray-50); 
+  }
+  .contact-inner {
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+  .contact-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .contact-card {
+    background: white; border-radius: 16px; padding: 2rem;
+    border: 1px solid var(--gray-200); text-align: center;
+    transition: all 0.3s;
+  }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(27,92,184,0.1); border-color: var(--blue-royal); }
+  .contact-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .contact-label { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--blue-navy); margin-bottom: 0.4rem; }
+  .contact-val { font-size: 0.82rem; color: var(--gray-600); text-decoration: none; }
+  .contact-val:hover { color: var(--blue-royal); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--blue-navy); color: rgba(255,255,255,0.55);
+    padding: 2.5rem 4rem; display: flex;
+    align-items: center; justify-content: space-between;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+  .footer-logo { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+  .footer-name { color: white; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; }
+  .footer-copy { font-size: 0.8rem; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0.9rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-title { font-size: 2.4rem; }
+    .hero-logo-wrap { order: -1; }
+    .hero-logo-ring { width: 200px; height: 200px; }
+    .hero-logo { width: 140px; height: 140px; }
+    .stats-bar { padding: 2rem 1.5rem; flex-wrap: wrap; gap: 1.5rem; }
+    .stat-item { border-right: none; padding: 0 1.5rem; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .repo-grid { grid-template-columns: 1fr; }
+    .research-grid { grid-template-columns: 1fr; }
+    .docencia-layout { grid-template-columns: 1fr; }
+    .contact-cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <img src="IG_Computación_e_Informática-removebg-preview.png"alt="IG Logo" class="nav-logo">
+    <span class="nav-name">IG Computación e Informática</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertis</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#repositorio">Repositorio</a></li>
+    <li><a href="#investigacion">Investigación</a></li>
+    <li><a href="#docencia">Docencia</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-tag">🎓 PhD Candidate · Informática Aplicada</span>
+      <h1 class="hero-title">Tecnología,<br>Innovación &amp;<br><span>Educación</span></h1>
+      <p class="hero-desc">
+        Ingeniero en Informática con trayectoria en docencia universitaria, investigación aplicada, desarrollo web y soluciones IoT. Comprometido con la transformación digital y la formación de nuevas generaciones tecnológicas.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">🌐 Desarrollo Web</span>
+        <span class="badge">📡 IoT</span>
+        <span class="badge">🔬 Investigación</span>
+        <span class="badge">📚 Docencia</span>
+        <span class="badge">⚙️ Scrum / Agile</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#repositorio" class="btn-primary">Ver Proyectos</a>
+        <a href="#contacto" class="btn-outline">Contáctame</a>
+      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <div class="hero-logo-ring">
+        <img src="IG_Computación_e_Informática-removebg-preview.png" alt="IG Computación e Informática" class="hero-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">7+</span>
+    <span class="stat-label">Proyectos Web Entregados</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">8+</span>
+    <span class="stat-label">Años de Docencia</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">IoT</span>
+    <span class="stat-label">Soluciones Embebidas</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">PhD</span>
+    <span class="stat-label">Candidato en Curso</span>
+  </div>
+</div>
+
+<!-- EXPERTIS -->
+<section id="expertise">
+  <div class="container">
+    <span class="section-label">Áreas de especialización</span>
+    <h2 class="section-title">Mi Expertis Profesional</h2>
+    <p class="section-subtitle">Combinando investigación, educación y desarrollo para crear soluciones tecnológicas de alto impacto.</p>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="exp-icon">📚</div>
+        <h3 class="exp-title">Docencia Universitaria</h3>
+        <p class="exp-desc">Formación en programación, bases de datos, redes y arquitectura de sistemas. Metodologías activas centradas en el estudiante.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">🔬</div>
+        <h3 class="exp-title">Investigación Aplicada</h3>
+        <p class="exp-desc">Candidato a Doctor en Informática Aplicada. Investigación en tecnologías emergentes, IoT y transformación digital.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">🌐</div>
+        <h3 class="exp-title">Desarrollo Web</h3>
+        <p class="exp-desc">Diseño y desarrollo de sitios y aplicaciones web responsive. Experiencia en WordPress, e-commerce, HTML/CSS/JS.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="exp-icon">📡</div>
+        <h3 class="exp-title">Soluciones IoT</h3>
+        <p class="exp-desc">Prototipado y despliegue de sistemas embebidos. Integración de sensores, microcontroladores y plataformas cloud IoT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="container">
+    <span class="section-label">Estructura de trabajo</span>
+    <h2 class="section-title">Equipo &amp; Roles</h2>
+    <p class="section-subtitle">Organización ágil bajo marco Scrum para garantizar proyectos bien planificados, iterativos y de calidad.</p>
+    <div class="team-grid">
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">🎯</div>
+          <div class="team-role">Technical Product Owner</div>
+          <div class="team-sublabel">Visión &amp; Estrategia</div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-resp-title">Responsabilidades</div>
+          <ul class="team-resp-list">
+            <li>Definición de la visión del producto y roadmap</li>
+            <li>Gestión y priorización del Product Backlog</li>
+            <li>Criterios de aceptación y validación técnica</li>
+            <li>Coordinación entre stakeholders y equipo</li>
+            <li>Garantizar alineación tecnológica con objetivos</li>
+          </ul>
+          <span class="scrum-badge">🏆 Liderazgo Técnico</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">🔄</div>
+          <div class="team-role">Scrum Master</div>
+          <div class="team-sublabel">Agilidad &amp; Facilitación</div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-resp-title">Responsabilidades</div>
+          <ul class="team-resp-list">
+            <li>Facilitar ceremonias Scrum (Sprint, Review, Retro)</li>
+            <li>Eliminar impedimentos del equipo de desarrollo</li>
+            <li>Coaching en prácticas ágiles y mejora continua</li>
+            <li>Proteger al equipo de interferencias externas</li>
+            <li>Métricas de velocidad y seguimiento de sprints</li>
+          </ul>
+          <span class="scrum-badge">⚡ Metodología Ágil</span>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">💻</div>
+          <div class="team-role">Developers</div>
+          <div class="team-sublabel">Diseño &amp; Construcción</div>
+        </div>
+        <div class="team-card-body">
+          <div class="team-resp-title">Responsabilidades</div>
+          <ul class="team-resp-list">
+            <li>Desarrollo frontend, backend e integración IoT</li>
+            <li>Estimación de historias de usuario y tareas</li>
+            <li>Code review, pruebas y aseguramiento de calidad</li>
+            <li>Despliegue y mantenimiento de soluciones</li>
+            <li>Documentación técnica de sistemas</li>
+          </ul>
+          <span class="scrum-badge">🛠️ Construcción &amp; Entrega</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REPOSITORIO -->
+<section id="repositorio">
+  <div class="container">
+    <span class="section-label">Portafolio de proyectos</span>
+    <h2 class="section-title">Repositorio de Proyectos</h2>
+    <p class="section-subtitle">Sitios web y aplicaciones desarrollados para clientes en distintos rubros. Cada proyecto construido con metodología ágil.</p>
+    <div class="repo-grid">
+
+      <!-- 1 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#7C3AED,#4C1D95)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="toromecanicoeventos.png" alt="Toro Mecánico Eventos" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag">Eventos</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Toro Mecánico Eventos</div>
+          <p class="repo-desc">Sitio web para arriendo de toro mecánico y entretenimiento para fiestas, eventos corporativos y celebraciones. Diseño visual atractivo con catálogo de servicios y formulario de cotización.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS y JS</span>
+            </div>
+            <a href="https://toromecanicoeventos.cl/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#0369A1,#0EA5E9)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="penemecanico.png" alt="Despedidas de solteras" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag">Servicios</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Pene Mecánico</div>
+          <p class="repo-desc">Plataforma web para dar a conocer pene mecánico con servicio de arriendo del juego inflable especial para despedidas de solteras y otros eventos de adultos.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">WordPress</span>
+              <span class="tech-pill">CSS</span>
+            </div>
+            <a href="https://penemecanico.cl/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#B45309,#D97706)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="coppersupply.png" alt="Ferreteria Estados Unidos" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag" style="color:#000;">E-Commerce</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Copper Supply</div>
+          <p class="repo-desc">Tienda online de suministros e insumos en Santa Barbara, California, Estados Unidos. Catálogo de productos, carrito de compras y gestión de pedidos para el sector industrial.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">Jumpseller</span>
+              <span class="tech-pill">E-Commerce</span>
+            </div>
+            <a href="https://coppersupply1.jumpseller.com/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#065F46,#059669)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="generaeventos.png" alt="Genera Eventos" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag">Eventos</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Genera Eventos</div>
+          <p class="repo-desc">Plataforma web para organización y gestión de eventos. Muestra de servicios, galería de eventos realizados y sistema de contacto para cotizaciones personalizadas.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS y JS</span>
+            </div>
+            <a href="https://generaeventos.cl/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#9D174D,#DB2777)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="ojitosdelucero.png" alt="Ojitos de Lucero" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag" style="color:#000;">Resposteria</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Ojitos de Lucero</div>
+          <p class="repo-desc">Sitio web con diseño cálido y visual para proyecto de reposteria. Presenta servicios, actividades y propuesta de valor de manera accesible y atractiva.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">E-Commerce</span>
+              <span class="tech-pill">UX Design</span>
+            </div>
+            <a href="https://ojitosdelucero.cl/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#374151,#6B7280)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="sotoyparedes.png" alt="Soto y Paredes" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag">Contabilidad</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Soto Paredes · Contabilidad</div>
+          <p class="repo-desc">Portafolio digital para estudio de contadores. Muestra de proyectos con galería visual, descripción técnica de asesorias y presentación del equipo profesional.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">HTML/CSS</span>
+              <span class="tech-pill">GitHub Pages</span>
+            </div>
+            <a href="https://ignacioperezve-arch.github.io/soto-paredes/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#1A2F6F,#1B5CB8)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="practicasantiguas.png" alt="Practicas Antiguas" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag">Cultural</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Prácticas Antiguas</div>
+          <p class="repo-desc">Sitio web cultural enfocado en la difusión y preservación de prácticas ancestrales y tradiciones. Diseño editorial con énfasis en la identidad y el contenido histórico.</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">WordPress</span>
+              <span class="tech-pill">SEO</span>
+            </div>
+            <a href="https://practicasantiguas.es/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="repo-card">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,#1A2F6F,#1B5CB8)">
+          <div class="repo-thumb-overlay"></div>
+          <img src="generacontenidos.png" alt="Practicas Antiguas" style="width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;">
+          <span class="repo-thumb-tag" style="color:#000;">Proyecto IoT</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name">Genera Contenidos</div>
+          <p class="repo-desc">Yo Respondo es un sistema de quiz interactivo con buzzers para eventos, team building y educación. Cuatro jugadores, categorías ilimitadas y ahora también estamos desarrollando la versión inalámbrica..</p>
+          <div class="repo-footer">
+            <div class="repo-tech-list">
+              <span class="tech-pill">ESP 32 - C/C++</span>
+              <span class="tech-pill">Android - Java</span>
+            </div>
+            <a href="https://practicasantiguas.es/" target="_blank" class="repo-link">Ver sitio ↗</a>
+          </div>
+        </div>
+      </div>
+      <!-- IoT 1 -->
+    
+
+      <!-- IoT 2 -->
+      <div class="repo-card iot-placeholder">
+        <div class="repo-thumb" style="background:linear-gradient(135deg,rgba(27,92,184,0.15),rgba(14,165,233,0.1))">
+          <div class="repo-thumb-placeholder" style="color:rgba(27,92,184,0.4)">
+            <div class="repo-thumb-icon">🤖</div>
+            <div class="repo-thumb-domain" style="color:rgba(27,92,184,0.4)">Proyecto IoT</div>
+          </div>
+          <span class="repo-thumb-tag" style="background:rgba(27,92,184,0.1);border-color:rgba(27,92,184,0.2);color:var(--blue-royal)">IoT</span>
+        </div>
+        <div class="repo-body">
+          <div class="repo-name" style="color:var(--gray-600)">Proyecto IoT — Por añadir</div>
+          <p class="repo-desc" style="color:#94A3B8">Espacio reservado para solución de automatización o monitoreo con microcontroladores, sensores y conectividad cloud.</p>
+          <a href="#contacto" class="iot-add-btn">+ Añadir proyecto IoT</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INVESTIGACION -->
+<section id="investigacion">
+  <div class="container">
+    <span class="section-label">Actividad académica</span>
+    <h2 class="section-title">Investigaciones en Curso</h2>
+    <p class="section-subtitle">Líneas de investigación activas en el contexto del doctorado en Informática Aplicada y proyectos de I+D.</p>
+    <div class="research-grid">
+
+      <div class="research-card">
+        <div class="research-status status-active">
+          <span class="status-dot"></span> Activa
+        </div>
+        <div class="research-title">Aplicación de IoT en Entornos Educativos</div>
+        <p class="research-desc">Exploración del uso de dispositivos conectados y sensores para enriquecer el proceso de enseñanza-aprendizaje en aulas universitarias. Diseño de prototipos de monitoreo y retroalimentación en tiempo real.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-status status-active">
+          <span class="status-dot"></span> Activa
+        </div>
+        <div class="research-title">Transformación Digital en PyMEs Regionales</div>
+        <p class="research-desc">Análisis de barreras y estrategias de adopción tecnológica en pequeñas y medianas empresas. Propuesta de frameworks de implementación digital adaptados al contexto latinoamericano.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-status status-draft">
+          <span class="status-dot"></span> En formulación
+        </div>
+        <div class="research-title">Sistemas Ciberfísicos e IoT en Gestión Hídrica</div>
+        <p class="research-desc">Desarrollo de frameworks de Internet de las Cosas para la gestión de recursos hídricos no convencionales. Integración de sensores meteorológicos y actuadores térmicos en sistemas ciberfísicos para la optimización de procesos de condensación atmosférica en tiempo real</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-status status-draft">
+          <span class="status-dot"></span> En formulación
+        </div>
+        <div class="research-title">Visión Computacional para el Monitoreo Atmosférico </div>
+        <p class="research-desc">Aplicación de redes neuronales convolucionales en la automatización del monitoreo de nubosidad. Diseño de sistemas de cuantificación objetiva en octas mediante cámaras 360° para eliminar la subjetividad y los errores en los protocolos de observación meteorológica tradicional.</p>
+      </div>
+      <div class="research-card">
+        <div class="research-status status-draft">
+          <span class="status-dot"></span> En formulación
+        </div>
+        <div class="research-title">Control Adaptativo y Eficiencia Energética en AWG </div>
+        <p class="research-desc">Optimización del consumo eléctrico en sistemas activos de captación de agua mediante algoritmos adaptativos. Sincronización dinámica de ciclos de refrigeración por compresión de vapor (VCR) con el potencial de rocío calculado para maximizar la eficiencia hídrica neta. </p>
+      </div>
+      <div class="research-card">
+        <div class="research-status status-draft">
+          <span class="status-dot"></span> En formulación
+        </div>
+        <div class="research-title">Modelado de Recursos Hídricos y Resiliencia Climática</div>
+        <p class="research-desc">Implementación de modelos semianalíticos para la estimación de rendimiento de rocío en zonas semiáridas. Evaluación de tecnologías escalables de bajo costo para aumentar la resiliencia de comunidades afectadas por la desertificación y el avance de la escasez hídrica.</p>
+      </div>
+      <!-- <div class="research-add">
+        <span>🔬</span>
+        <p>Espacio para nueva línea de investigación</p>
+        <small style="color:rgba(255,255,255,0.3);font-size:0.75rem">Área, descripción y estado de avance</small>
+      </div>*/-->
+
+    </div>
+  </div>
+</section>
+
+<!-- DOCENCIA -->
+<section id="docencia">
+  <div class="container">
+    <div class="docencia-layout">
+      <div class="docencia-sidebar">
+        <div class="doc-sidebar-title">Actividad Docente</div>
+        <p class="doc-sidebar-sub">Más de una década formando profesionales del área tecnológica con metodologías innovadoras y un enfoque práctico.</p>
+        <ul class="doc-stat-list">
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🎓</span>
+            <div>
+              <div class="doc-stat-num">8+</div>
+              <div class="doc-stat-lbl">Años de experiencia</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">📖</span>
+            <div>
+              <div class="doc-stat-num">Pregrado</div>
+              <div class="doc-stat-lbl">Nivel de enseñanza</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🏫</span>
+            <div>
+              <div class="doc-stat-num">Univ.</div>
+              <div class="doc-stat-lbl">Contexto universitario</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🤝</span>
+            <div>
+              <div class="doc-stat-num">PBL</div>
+              <div class="doc-stat-lbl">Aprendizaje basado en proyectos</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🏢</span>
+            <div>
+              <div class="doc-stat-num">CFT</div>
+              <div class="doc-stat-lbl">Centro de Formación Técnica</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🎒</span>
+            <div>
+              <div class="doc-stat-num">IP</div>
+              <div class="doc-stat-lbl">Instituto Profesional</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">👤</span>
+            <div>
+              <div class="doc-stat-num">1 a 1</div>
+              <div class="doc-stat-lbl">Clases particulares</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">👴</span>
+            <div>
+              <div class="doc-stat-num">+60</div>
+              <div class="doc-stat-lbl">Formación a personas mayores</div>
+            </div>
+          </li>
+          <li class="doc-stat-item">
+            <span class="doc-stat-icon">🌍</span>
+            <div>
+              <div class="doc-stat-num">Com.</div>
+              <div class="doc-stat-lbl">Centros comunitarios</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <span class="section-label">Asignaturas &amp; actividades</span>
+        <h2 class="section-title" style="font-size:2rem;margin-bottom:0.5rem">Lo que enseño &amp; comparto</h2>
+        <p style="font-size:0.9rem;color:var(--gray-600);margin-bottom:2rem;line-height:1.7">Asignaturas, talleres y actividades académicas en las que participo activamente.</p>
+        <div class="docencia-cards">
+          <div class="doc-card">
+            <div class="doc-card-icon">💾</div>
+            <div>
+              <div class="doc-card-title">Bases de Datos &amp; SQL</div>
+              <p class="doc-card-desc">Modelado relacional, consultas avanzadas y diseño de sistemas de información. Énfasis en casos reales de industria.</p>
+              <span class="doc-card-tag">Pregrado</span>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-icon">🌐</div>
+            <div>
+              <div class="doc-card-title">Desarrollo Web</div>
+              <p class="doc-card-desc">HTML, CSS, JavaScript, PHP y frameworks modernos. Proyectos aplicados desde la concepción hasta el despliegue.</p>
+              <span class="doc-card-tag">Pregrado</span>
+            </div>
+          </div>
+          <div class="doc-card">
+            <div class="doc-card-icon">⚙️</div>
+            <div>
+              <div class="doc-card-title">Ingeniería de Software</div>
+              <p class="doc-card-desc">Metodologías ágiles, gestión de proyectos, patrones de diseño y buenas prácticas de desarrollo colaborativo.</p>
+              <span class="doc-card-tag">Pregrado</span>
+            </div>
+          </div>
+          <div class="doc-card">
+  <div class="doc-card-icon">🤖</div>
+  <div>
+    <div class="doc-card-title">Programación Orientada a Objetos</div>
+    <p class="doc-card-desc">Formación de Analistas Programadores en IP Santo Tomás, San Joaquín. Paradigma OOP con enfoque aplicado. (2019 – 2024)</p>
+    <span class="doc-card-tag">Pregrado</span>
+  </div>
+  </div>
+
+  <div class="doc-card">
+    <div class="doc-card-icon">📡</div>
+    <div>
+      <div class="doc-card-title">Internet de las Cosas (IoT)</div>
+      <p class="doc-card-desc">Asignatura dictada en IP Santo Tomás desde 2021. Coordinador de la Feria Tecnológica IoT (2024). Modalidades presencial, híbrida y online.</p>
+      <span class="doc-card-tag">Pregrado</span>
+    </div>
+  </div>
+
+  <div class="doc-card">
+    <div class="doc-card-icon">🧮</div>
+    <div>
+      <div class="doc-card-title">Estructura de Datos y Algoritmos</div>
+      <p class="doc-card-desc">Pseudocódigo y Python para Analistas Programadores en IP Santo Tomás, San Joaquín. Clases online (Mar 2020 – Jun 2021).</p>
+      <span class="doc-card-tag">Pregrado</span>
+    </div>
+  </div>
+
+  <div class="doc-card">
+    <div class="doc-card-icon">🖥️</div>
+    <div>
+      <div class="doc-card-title">Computación Básica</div>
+      <p class="doc-card-desc">Asignatura en la carrera de Servicio Social, Depto. Ingeniería en Informática, IP Santo Tomás San Joaquín (Mar 2022 – Dic 2023).</p>
+      <span class="doc-card-tag">Pregrado</span>
+    </div>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-inner">
+      <span class="section-label">Trabajemos juntos</span>
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-subtitle" style="margin:0 auto 0">¿Tienes un proyecto web, necesitas asesoría tecnológica o estás interesado en colaboración académica? Con gusto conversamos.</p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <span class="contact-icon">📧</span>
+          <div class="contact-label">Correo Electrónico</div>
+          <a href="mailto:ignacio.perezve@postgrado.uv.cl" class="contact-val">ignacio.perezve@postgrado.uv.cl</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">💼</span>
+          <div class="contact-label">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/ignacio-perez-vergara-1712b7151/" target="_blank" rel="noopener noreferrer" class="contact-val">IG Computación e Informática</a>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">📍</span>
+          <div class="contact-label">Ubicación</div>
+          <a href="https://maps.app.goo.gl/iBKEVfTxMCG8x2Dq8" target="_blank" rel="noopener noreferrer" class="contact-val">Chile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="IG_Computación_e_Informática-removebg-preview.png" alt="IG Logo" class="footer-logo">
+    <span class="footer-name">IG Computación e Informática</span>
+  </div>
+  <span class="footer-copy">© 2025 IG Computación e Informática · Todos los derechos reservados</span>
+</footer>
+
+</body>
+</html>
